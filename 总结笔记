@@ -36,3 +36,8 @@ processImgToImage(imgStr) {
 
 6：接口传值
 一定要检查是否与接口的值一一对应。
+
+7：fetch兼容性  （兼容苹果6，访问不到接口）
+
+安装whatwg-fetch插件。
+
