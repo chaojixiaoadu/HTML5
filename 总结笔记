@@ -4,6 +4,12 @@ vue 公众号
 组件采用fixed定位，覆盖原来的页面，props传值
 
 2：监听页面滚动
+mix_scrollCallback: function(e) {
+      this.mix_scrollTopLength =
+        document.documentElement.scrollTop ||
+        window.pageYOffset ||
+        document.body.scrollTop;
+    },
 
 3：loading
 https://www.html5tricks.com/tag/loading%E5%8A%A8%E7%94%BB/
@@ -26,6 +32,7 @@ processImgToImage(imgStr) {
       return imageArr;
     },
 
-5：授权
+5：授权（wx授权）
 
-6：
+6：接口传值
+一定要检查是否与接口的值一一对应。
