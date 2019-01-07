@@ -40,3 +40,48 @@ processImgToImage(imgStr) {
 7：fetch兼容性  （兼容苹果6，访问不到接口）
 安装whatwg-fetch插件。
 
+8：定位（根据经纬度获取距离，城市名称）
+//计算经纬度
+        if (_c.isInWeixin && !_c.guessCity) {
+          wx.getLocation({
+            type: 'gcj02', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+            success: function(res) {
+              _c.gg_lat = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+              _c.gg_lon = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+              _c.speed = res.speed; // 速度，以米/每秒计
+              _c.accuracy = res.accuracy; // 位置精度
+              //根据经纬度获取距离
+              var transferedData = _c.bd_encrypt(_c.gg_lon, _c.gg_lat);
+              getAddressByLatLog({
+                lat: transferedData.bd_lat,
+                log: transferedData.bd_lon
+              }).then(res => {
+                if (res.Result == 1) {
+                  var city = res.Data.addressComponent.city;
+                  _c.SET_GUESS_CITY(city);
+                  setStore("guessCity", city);
+                }
+              });
+            },
+            fail: function(res) {
+            },
+            cancel: function(res) {
+            },
+          });
+        };
+        
+        9：获取url?后面的内容
+         getRequest() {
+        var url = location.href; //获取url中"?"符后的字串
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+          var str = url.split("?")[1];
+          var strs = str.split("&");
+          for (var i = 0; i < strs.length; i++) {
+            theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+          }
+        }
+        return theRequest;
+      },
+        
+
