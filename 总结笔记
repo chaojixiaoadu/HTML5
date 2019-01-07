@@ -1,1 +1,31 @@
 
+vue 公众号
+1：组件
+组件采用fixed定位，覆盖原来的页面，props传值
+
+2：监听页面滚动
+
+3：loading
+https://www.html5tricks.com/tag/loading%E5%8A%A8%E7%94%BB/
+
+4：处理字符串图片
+processImgToImage(imgStr) {
+      if (!imgStr || imgStr.length == 0) {
+        return [];
+      }
+      var imgReg = /<img.*?(?:>|\/>)/gi; //找到照片
+      var arr = imgStr.match(imgReg); //照片存在arr中
+      var srcReg = /data-original=[\'\"]?([^\'\"]*)[\'\"]?/i; //规则
+      var imageArr = [];
+      for (var i = 0; i < arr.length; i++) { //遍历数组arr
+        var src = arr[i].match(srcReg); //截取照片，虽然取出来的是一张照片，但是它仍然是一个数组，所以下面用src[1]
+        if (src[1]) {
+          imageArr.push(src[1]); //返回数组
+        }
+      }
+      return imageArr;
+    },
+
+5：授权
+
+6：
