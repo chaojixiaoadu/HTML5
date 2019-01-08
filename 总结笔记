@@ -83,5 +83,16 @@ processImgToImage(imgStr) {
         }
         return theRequest;
       },
+      
+      10:div数字数量超出的控制
+      white-space:nowrap;  //强制不换行
+      text-overflow:ellipsis  //超出部分用省略号
+      //自动换行
+      word-wrap: break-word;
+      word-break: normal; 
+      //强制英文单词断行
+      word-break:break-all;
+      
+      
         
 
